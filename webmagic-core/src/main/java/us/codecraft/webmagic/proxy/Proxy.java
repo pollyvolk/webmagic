@@ -6,7 +6,8 @@ import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-import org.apache.commons.lang3.StringUtils;
+//import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 
 public class Proxy {
 
@@ -84,7 +85,8 @@ public class Proxy {
         if (password != null) {
             userInfoBuffer.append(":").append(urlencode(password));
         }
-        final String userInfo = StringUtils.defaultIfEmpty(userInfoBuffer.toString(), null);
+        //final String userInfo = StringUtils.defaultIfEmpty(userInfoBuffer.toString(), null);
+        final String userInfo = Strings.emptyToNull(userInfoBuffer.toString());
         URI uri;
         try {
             uri = new URI(scheme, userInfo, host, port, null, null, null);

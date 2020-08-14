@@ -1,6 +1,8 @@
 package us.codecraft.webmagic.selector;
 
-import org.apache.commons.lang3.StringUtils;
+//import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
+import com.google.common.base.CharMatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,7 @@ public class RegexSelector implements Selector {
     }
 
     private void compileRegex(String regexStr) {
-        if (StringUtils.isBlank(regexStr)) {
+        if (Strings.isNullOrEmpty(CharMatcher.whitespace().trimFrom(regexStr))) {
             throw new IllegalArgumentException("regex must not be empty");
         }
         try {

@@ -1,6 +1,6 @@
 package us.codecraft.webmagic.utils;
 
-import org.apache.commons.lang3.StringUtils;
+//import org.apache.commons.lang3.StringUtils;
 import us.codecraft.webmagic.Request;
 
 import java.net.MalformedURLException;

@@ -1,6 +1,8 @@
 package us.codecraft.webmagic.utils;
 
-import org.apache.commons.lang3.StringUtils;
+//import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.CharMatcher;
+import com.google.common.base.Strings;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -26,7 +28,9 @@ public abstract class CharsetUtils {
         // charset
         // 1、encoding in http header Content-Type
         charset = UrlUtils.getCharset(contentType);
-        if (StringUtils.isNotBlank(contentType) && StringUtils.isNotBlank(charset)) {
+        //if (StringUtils.isNotBlank(contentType) && StringUtils.isNotBlank(charset)) {
+        if (!Strings.isNullOrEmpty(CharMatcher.whitespace().trimFrom(contentType))
+                && !Strings.isNullOrEmpty(CharMatcher.whitespace().trimFrom(charset))) {
             logger.debug("Auto get charset: {}", charset);
             return charset;
         }
@@ -34,6 +38,7 @@ public abstract class CharsetUtils {
         Charset defaultCharset = Charset.defaultCharset();
         String content = new String(contentBytes, defaultCharset);
         // 2、charset in meta
+        //if (StringUtils.isNotEmpty(content)) {
         if (StringUtils.isNotEmpty(content)) {
             Document document = Jsoup.parse(content);
             Elements links = document.select("meta");
