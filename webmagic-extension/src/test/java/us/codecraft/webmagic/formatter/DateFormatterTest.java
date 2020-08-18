@@ -1,7 +1,7 @@
 package us.codecraft.webmagic.formatter;
 
-import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.DateUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;   // Not possible with guava options
+import org.apache.commons.lang3.time.DateUtils;         // Not possible with guava options
 import org.junit.Test;
 import us.codecraft.webmagic.model.formatter.DateFormatter;
 
@@ -18,9 +18,9 @@ public class DateFormatterTest {
     public void testDateFormatter() throws Exception {
         DateFormatter dateFormatter = new DateFormatter();
         String pattern = "yyyy-MM-dd HH:mm";
-        Date date = DateUtils.parseDate("2013-09-10 22:11", new String[]{pattern});
+        Date date = DateUtils.parseDate("2013-09-10 22:11", new String[]{pattern});     // Not possible with guava options
         dateFormatter.initParam(new String[]{pattern});
-        Date format = dateFormatter.format(DateFormatUtils.format(date, pattern));
+        Date format = dateFormatter.format(DateFormatUtils.format(date, pattern));      // Not possible with guava options
         assertThat(format).isEqualTo(date);
     }
 }

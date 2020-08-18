@@ -1,7 +1,7 @@
 package us.codecraft.webmagic.model;
 
-import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.DateUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;       // Not possible with guava options
+import org.apache.commons.lang3.time.DateUtils;             // Not possible with guava options
 import org.junit.Test;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.ExtractByUrl;
@@ -98,7 +98,7 @@ public class PageModelExtractorTest {
     @Test
     public void testExtractDate() throws Exception {
         ModelDate modelDate = (ModelDate) PageModelExtractor.create(ModelDate.class).process(pageMocker.getMockPage());
-        assertThat(DateFormatUtils.format(modelDate.date,"yyyyMMdd")).isEqualTo("20170603");
+        assertThat(DateFormatUtils.format(modelDate.date,"yyyyMMdd")).isEqualTo("20170603");        // Not possible with guava options
     }
 
     @Test
@@ -122,13 +122,14 @@ public class PageModelExtractorTest {
     @Test
     public void testExtractDateList() throws Exception {
         ModelDateList modelDate = (ModelDateList) PageModelExtractor.create(ModelDateList.class).process(pageMocker.getMockPage());
-        assertThat(modelDate.dates).containsExactly(DateUtils.parseDate("20170601", "yyyyMMdd"), DateUtils.parseDate("20170602", "yyyyMMdd"), DateUtils.parseDate("20170603", "yyyyMMdd"), DateUtils.parseDate("20170604", "yyyyMMdd"));
+        assertThat(modelDate.dates).containsExactly(DateUtils.parseDate("20170601", "yyyyMMdd"), DateUtils.parseDate(
+                "20170602", "yyyyMMdd"), DateUtils.parseDate("20170603", "yyyyMMdd"), DateUtils.parseDate("20170604", "yyyyMMdd"));     // Not possible with guava options
     }
 
     @Test
     public void testExtractCustomList() throws Exception {
         ModelCustomList modelDate = (ModelCustomList) PageModelExtractor.create(ModelCustomList.class).process(pageMocker.getMockPage());
-        assertThat(modelDate.dates).containsExactly(DateUtils.parseDate("20170601", "yyyyMMdd"), DateUtils.parseDate("20170602", "yyyyMMdd"), DateUtils.parseDate("20170603", "yyyyMMdd"), DateUtils.parseDate("20170604", "yyyyMMdd"));
+        assertThat(modelDate.dates).containsExactly(DateUtils.parseDate("20170601", "yyyyMMdd"), DateUtils.parseDate("20170602", "yyyyMMdd"), DateUtils.parseDate("20170603", "yyyyMMdd"), DateUtils.parseDate("20170604", "yyyyMMdd"));        // Not possible with guava options
     }
 
     @Test

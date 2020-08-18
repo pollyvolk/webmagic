@@ -2,7 +2,8 @@ package us.codecraft.webmagic.scheduler;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.StringUtils;
+//import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import us.codecraft.webmagic.Request;
@@ -64,7 +65,7 @@ public class RedisPriorityScheduler extends RedisScheduler
         try
         {
             String url = getRequest(jedis, task);
-            if(StringUtils.isBlank(url))
+            if(Strings.isNullOrEmpty(url))
                 return null;
             return getExtrasInItem(jedis, url, task);
         }
@@ -81,7 +82,7 @@ public class RedisPriorityScheduler extends RedisScheduler
         if(urls.isEmpty())
         {
             url = jedis.lpop(getQueueNoPriorityKey(task));
-            if(StringUtils.isBlank(url))
+            if(Strings.isNullOrEmpty(url))
             {
                 urls = jedis.zrevrange(getZsetMinusPriorityKey(task), 0, 0);
                 if(!urls.isEmpty())
